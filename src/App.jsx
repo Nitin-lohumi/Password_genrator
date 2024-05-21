@@ -1,6 +1,4 @@
-import { useState,useCallback,useEffect,useRef } from 'react'//use hooks
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState,useCallback,useEffect,useRef } from 'react'
 import './App.css'
 
 function App(){
@@ -9,20 +7,23 @@ function App(){
  const [charAllow,setcharAllow]=useState(false);
  const [password,setPassword]=useState("");
  const passwordRef = useRef(null);
+
  const passwordGenrator=useCallback(()=>{
  let pass="";
  let str="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
  if(numberAllow) str+="0123456789"
  if(charAllow) str+="!@#$%^&*()"
  for(let i=1; i<=lenght; i++){
-  let char = Math.floor(Math.random() * str.length+1);
+  let char=Math.floor(Math.random() * str.length+1);
   pass += str.charAt(char);
  }
  setPassword(pass);
  },[lenght,numberAllow,charAllow,setPassword]);
+
 useEffect(()=>{
   passwordGenrator()
 },[lenght,numberAllow,charAllow,passwordGenrator])
+
   return (
     <>
      {/* <h1 className='text-5xl text-center text-white'>password genrator</h1> */}
